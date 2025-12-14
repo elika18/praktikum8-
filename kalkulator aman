@@ -1,0 +1,44 @@
+def kalkulator_aman():
+    """
+    Program kalkulator sederhana dengan penanganan eksepsi.
+    """
+    try:
+        # 1. Minta input dan konversi ke float
+        num1_str = input("Masukkan angka pertama: ")
+        num2_str = input("Masukkan angka kedua: ")
+        operator = input("Masukkan operator (+, -, *, /): ")
+
+        # Cek dan konversi input angka. Ini bisa memicu ValueError.
+        num1 = float(num1_str)
+        num2 = float(num2_str)
+
+        # 2. Cek operator dan lakukan perhitungan
+        if operator == '+':
+            hasil = num1 + num2
+        elif operator == '-':
+            hasil = num1 - num2
+        elif operator == '*':
+            hasil = num1 * num2
+        elif operator == '/':
+            # Perhitungan ini bisa memicu ZeroDivisionError
+            hasil = num1 / num2
+        else:
+            # 3. Jika operator tidak valid, picu (raise) Exception kustom 
+            raise Exception(f"Operator '{operator}' tidak valid. Hanya menerima +, -, *, /.")
+
+        print(f"\nHasil dari {num1} {operator} {num2} = {hasil}")
+
+    except ValueError:
+        # Menangkap error jika input bukan angka 
+        print("\nKesalahan: Input angka harus berupa bilangan yang valid.")
+    
+    except ZeroDivisionError:
+        # Menangkap error pembagian dengan nol 
+        print("\nKesalahan: Tidak dapat melakukan pembagian dengan nol.")
+    
+    except Exception as e:
+        # Menangkap Exception umum, terutama yang kita picu sendiri (raise)
+        print(f"\nKesalahan Operator: {e}")
+
+# Jalankan program
+kalkulator_aman()
