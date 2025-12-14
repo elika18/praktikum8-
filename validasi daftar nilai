@@ -1,0 +1,39 @@
+def validasi_nilai_mahasiswa():
+    # Data awal sesuai soal
+    nilai = [80, 90, 'A', 70, 100, 'B']
+    
+    total_nilai = 0
+    jumlah_data_valid = 0
+    
+    print(f"Data awal: {nilai}\n")
+    print("--- Memulai Validasi ---")
+
+    # Iterasi untuk memproses setiap item dalam list
+    for data in nilai:
+        try:
+            # Mencoba menjumlahkan data. 
+            # Jika data adalah string ('A' atau 'B'), ini akan memicu TypeError
+            total_nilai += data
+            
+            # Jika berhasil (tidak error), tambahkan counter data valid
+            jumlah_data_valid += 1
+            
+        except TypeError:
+            # Blok ini menangkap error jika tipe data bukan angka (misal: string)
+            print(f"Peringatan: Data '{data}' bukan angka. Data dilewati.")
+        except Exception as e:
+            # Antisipasi error lain
+            print(f"Terjadi error tak terduga pada data '{data}': {e}")
+
+    # Menghitung dan menampilkan rata-rata
+    print("\n--- Hasil Akhir ---")
+    if jumlah_data_valid > 0:
+        rata_rata = total_nilai / jumlah_data_valid
+        print(f"Total Nilai Valid: {total_nilai}")
+        print(f"Jumlah Data Valid: {jumlah_data_valid}")
+        print(f"Rata-rata Nilai: {rata_rata}")
+    else:
+        print("Tidak ada data nilai yang valid untuk dihitung.")
+
+# Jalankan fungsi
+validasi_nilai_mahasiswa()
